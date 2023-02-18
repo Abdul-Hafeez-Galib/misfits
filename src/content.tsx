@@ -13,10 +13,8 @@ function IndexPopup() {
   const [wikiTldr, setWikiTldr] = useState<WikiTldr>(null)
 
   useEffect(() => {
-    chrome.runtime.onMessage.addListener(function ({
-      type,
-      text
-    }: WikiMessage) {
+    chrome.runtime.onMessage.addListener(function ({type, text}: WikiMessage) {
+      console.log(text)
       setWikiTldr(text)
       return true
     })
@@ -26,7 +24,7 @@ function IndexPopup() {
     <div>
       <div className="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <h1 className="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Wikipedia TLDR
+          WORDSMITHY
         </h1>
         <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-600 dark:text-white">
           {wikiTldr && wikiTldr["title"]}
