@@ -1,8 +1,10 @@
 import cssText from "data-text:~/style.css"
 import { useEffect, useState } from "react"
 import { Configuration, OpenAIApi } from "openai";
+import VolumeDownOutlinedIcon from "@mui/icons-material/VolumeDownOutlined";
 
 import type { WikiMessage, WikiTldr } from "~background"
+// import VolumeDown from "@mui/icons-material/VolumeDown";
 
 export const getStyle = () => {
   const style = document.createElement("style")
@@ -28,11 +30,20 @@ function IndexPopup() {
     setImgUrl(res.data.data[0].url);
   };
 
+  const handleSound = () => {
+    const synth = window.speechSynthesis
+
+    const utterThis = new SpeechSynthesisUtterance(wikiTldr.title)
+    console.log(wikiTldr.title)
+
+    synth.speak(utterThis)
+  }
+
   useEffect(() => {
     chrome.runtime.onMessage.addListener(function ({type, text}: WikiMessage) {
       console.log(text)
       setWikiTldr(text)
-      generateImage()
+      // generateImage()
       return true
     })
   }, [])
@@ -43,15 +54,16 @@ function IndexPopup() {
           <img className="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
       </a>
       <div className="p-5">
-          <a href="#">
+          <div className="flex justify-between">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {wikiTldr && wikiTldr["title"]}
               </h5>
-          </a>
+              <VolumeDownOutlinedIcon className="bg-stone-600 w-6 h-6" onClick={handleSound} />
+          </div>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {wikiTldr && wikiTldr["extract"]}
           </p>
-          
+          <button className="">CLOSE</button>
       </div>
     </div>
   )
