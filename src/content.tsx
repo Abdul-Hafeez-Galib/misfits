@@ -39,8 +39,32 @@ function IndexPopup() {
     synth.speak(utterThis)
   }
 
-  const handleClose = ()=> {
+  const handleClose = () => {
     window.close()
+    // chrome.runtime.onInstalled.removeListener(function () {
+    //   // chrome.contextMenus.removeAll()
+    //   window.close()
+    // })
+  }
+
+  const translate = (toLang) => {
+    const axios = require("axios");
+
+    const options = {
+      method: 'GET',
+      url: 'https://nlp-translation.p.rapidapi.com/v1/translate',
+      params: { text: wikiTldr, to: toLang, from: 'en' },
+      headers: {
+        'X-RapidAPI-Key': 'fbad208a89msh8f2065da05d5c5bp163297jsn8d6859280295',
+        'X-RapidAPI-Host': 'nlp-translation.p.rapidapi.com'
+      }
+    };
+
+    axios.request(options).then(function (response) {
+      console.log(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
   }
 
   useEffect(() => {
@@ -59,7 +83,7 @@ function IndexPopup() {
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {wikiTldr && wikiTldr["title"]}
           </h5>
-          <VolumeDownOutlinedIcon className="bg-stone-600 w-6 h-6" onClick={handleSound} />
+          {wikiTldr && <VolumeDownOutlinedIcon className="bg-stone-600 w-6 h-6" onClick={handleSound} />}
         </div>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           {wikiTldr && wikiTldr["extract"]}

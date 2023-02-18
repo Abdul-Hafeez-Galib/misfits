@@ -2,7 +2,7 @@ import tldr from 'wikipedia-tldr'
 
 chrome.runtime.onInstalled.addListener(function () {
     chrome.contextMenus.create({
-        title: 'Quick Wiki Lookup For "%s"',
+        title: 'Quick search for "%s"',
         contexts: ["selection"],
         id: "myContextMenuId"
     })
