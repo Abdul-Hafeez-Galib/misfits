@@ -1,6 +1,4 @@
-import tldr from "wikipedia-tldr"
-import * as dotenv from 'dotenv';
-import { Configuration, OpenAIApi } from 'openai';
+import tldr from 'wikipedia-tldr'
 
 chrome.runtime.onInstalled.addListener(function () {
     chrome.contextMenus.create({
@@ -42,6 +40,4 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
     } as WikiMessage)
 })
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+
