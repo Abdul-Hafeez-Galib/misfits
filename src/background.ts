@@ -39,5 +39,3 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
         text: tldrText
     } as WikiMessage)
 })
-
-

@@ -14,7 +14,7 @@ export const getStyle = () => {
 
 function IndexPopup() {
   const [wikiTldr, setWikiTldr] = useState<WikiTldr>(null)
-  
+
   const [imgUrl, setImgUrl] = useState(null)
 
   const configuration = new Configuration({
@@ -39,8 +39,12 @@ function IndexPopup() {
     synth.speak(utterThis)
   }
 
+  const handleClose = ()=> {
+    window.close()
+  }
+
   useEffect(() => {
-    chrome.runtime.onMessage.addListener(function ({type, text}: WikiMessage) {
+    chrome.runtime.onMessage.addListener(function ({ type, text }: WikiMessage) {
       console.log(text)
       setWikiTldr(text)
       // generateImage()
@@ -49,21 +53,23 @@ function IndexPopup() {
   }, [])
 
   return (
-    <div className = "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
-      <a href="#">
-          <img className="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-      </a>
+    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
       <div className="p-5">
-          <div className="flex justify-between">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {wikiTldr && wikiTldr["title"]}
-              </h5>
-              <VolumeDownOutlinedIcon className="bg-stone-600 w-6 h-6" onClick={handleSound} />
-          </div>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {wikiTldr && wikiTldr["extract"]}
-          </p>
-          <button className="">CLOSE</button>
+        <div className="flex justify-between">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {wikiTldr && wikiTldr["title"]}
+          </h5>
+          <VolumeDownOutlinedIcon className="bg-stone-600 w-6 h-6" onClick={handleSound} />
+        </div>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          {wikiTldr && wikiTldr["extract"]}
+        </p>
+
+        <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={handleClose}>
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            close
+          </span>
+        </button>
       </div>
     </div>
   )
