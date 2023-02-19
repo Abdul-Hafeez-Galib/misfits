@@ -14,9 +14,12 @@ export const getStyle = () => {
 
 function IndexPopup() {
   const [wikiTldr, setWikiTldr] = useState<WikiTldr>(null)
+  const [toLang, setToLang] = useState(null)
+  const [transText, setTransText] = useState(null)
 
   const [imgUrl, setImgUrl] = useState(null)
 
+  /*
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY
   })
@@ -29,6 +32,7 @@ function IndexPopup() {
     });
     setImgUrl(res.data.data[0].url);
   };
+  */
 
   const handleSound = () => {
     const synth = window.speechSynthesis
@@ -89,6 +93,24 @@ function IndexPopup() {
           {wikiTldr && wikiTldr["extract"]}
         </p>
 
+        {/*
+        <div className="text-white">Translate to:</div>
+        <br />
+        <div className="relative w-full lg:max-w-sm">
+          <select className="text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+            <option onClick={() => setToLang("hi")}>Hindi</option>
+            <option onClick={() => setToLang("ml")}>Malayalam</option>
+            <option onClick={() => setToLang("ta")}>Tamil</option>
+            <option onClick={() => setToLang("te")}>Telugu</option>
+            <option onClick={() => setToLang("ar")}>Arabic</option>
+            <option onClick={() => setToLang("de")}>German</option>
+            <option onClick={() => setToLang("es")}>Spanish</option>
+            <option onClick={() => setToLang("fr")}>French</option>
+          </select>
+        </div>
+        */}
+
+        <br />
         <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={handleClose}>
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             close
