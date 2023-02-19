@@ -12,7 +12,7 @@ An extension bootstrapped with Plasmo which displays a description and pronounci
 
 ## Link to product walkthrough
 
-[link to video]
+[Walkthrough Video](https://drive.google.com/file/d/1uLkOOA4EOAhlKVjAV2uCZV6-WNm8heAx/view?usp=sharing)
 
 ## How it Works ?
 
