@@ -31,9 +31,9 @@ Upon selecting a word in a webpage and choosing the extension's option from the 
 ## How to configure
 
 - Clone the repo
-- Install the required dependecies by running "npm install"
+- Install the required dependecies by running ```npm install```
 
 ## How to Run
 
-- Start the server by running "npm run dev"
+- Start the server by running ```npm run dev```
 - Install the extension by loading the unpacked extension from Chrome's extension menu
